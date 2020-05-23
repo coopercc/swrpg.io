@@ -19,3 +19,4 @@
 - suggestion box
 - Something so dms can create characters easily
 - Buy skill ranks and change xp accordingly (need to create a disable/enable functionality for this to work well)
+- PDF ingestion to populate character data
