@@ -1,6 +1,6 @@
 module.exports = {
-  purge: ['./src/**/*.html', './src/**/*.tsx'],
+  purge: ['./**/*.tsx'],
   theme: {},
-  variants: {},
+  variants: ['responsive', 'hover', 'focus', 'active'],
   plugins: [],
 };
