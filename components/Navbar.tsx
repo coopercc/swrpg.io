@@ -1,5 +1,5 @@
 import React from 'react';
-import { StarWars } from '../images/svgs';
+import { StarWars } from '../public/svgs';
 
 // TODO: Will need to add auth handling
 
