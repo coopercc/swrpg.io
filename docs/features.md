@@ -2,7 +2,7 @@
 
 ## MVP
 
-- Data on home page explaining what this site is about
+- text on home page explaining what this site is about
 - Login
 - Multiple characters
 - on login, show last viewed character
@@ -20,3 +20,4 @@
 - Something so dms can create characters easily
 - Buy skill ranks and change xp accordingly (need to create a disable/enable functionality for this to work well)
 - PDF ingestion to populate character data
+- Icon for character

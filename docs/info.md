@@ -2,39 +2,35 @@
 
 ```js
 Character = {
-  information: {
-    name: string,
-    species: string,
-    career: string,
-    specialization: string,
-    obligation: number,
-    conflict: number,
-    morality: number,
-    duty: number,
-    xp: {
-      total: number,
-      available: number,
-    },
+  name: string,
+  species: string,
+  career: string,
+  specialization: string,
+  obligation: number,
+  conflict: number,
+  morality: number,
+  duty: number,
+  xp: {
+    total: number,
+    available: number,
   },
-  health: {
-    soak: number,
-    wounds: {
-      threshold: number,
-      current: number, //TODO: decide if this accumulates or deteriorates
-    },
-    strain: {
-      threshold: number,
-      current: number, //TODO: decide if this accumulates or deteriorates
-    },
-    defence: {
-      melee: number,
-      ranged: number,
-    },
-    criticals: number,
-    encumberance: {
-      threshold: number,
-      current: number, // base 0
-    },
+  soak: number,
+  wounds: {
+    threshold: number,
+    current: number, //TODO: decide if this accumulates or deteriorates
+  },
+  strain: {
+    threshold: number,
+    current: number, //TODO: decide if this accumulates or deteriorates
+  },
+  defence: {
+    melee: number,
+    ranged: number,
+  },
+  criticals: number,
+  encumberance: {
+    threshold: number,
+    current: number, // base 0
   },
   characteristics: {
     brawn: number,
@@ -90,24 +86,39 @@ Character = {
     owed: number,
     available: number,
   },
-  items: [
-    {
-      name: string,
-      quantity: number,
-      encumberance: number, //per item
-    }
-  ]
+  items:{
+    0: itemId1,
+    1: itemId2,
+  }
 }
 ```
 
 ## Overall data
 
 ```
-  users: [
+  users: {
     userId: {
-      characters: [
-        {Character}
-      ]
+      characters: {
+        characterId: {
+          name: string
+        }
+      }
     }
-  ]
+  },
+  characters: {
+    characterId: {
+      CHARACTER
+    }
+  },
+  items: {
+    itemId: {
+      name: string,
+      quantity: number,
+      encumberance: number, //per item
+      desc: string,
+    }
+  },
+  weapons: {
+
+  }
 ```
