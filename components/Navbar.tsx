@@ -1,5 +1,5 @@
 import React from 'react';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 import { StarWars } from '../public/svgs';
 import { auth } from '../firebaseApp';
 
@@ -10,34 +10,35 @@ import { auth } from '../firebaseApp';
   2. logged in on home screen -> my characters
   3. logged in on account screen -> log out?
 */
+
 enum pages {
-  'home' = 'home',
-  'account' = 'account',
+  'home' = '/',
+  'account' = '/account',
 }
 
-interface NavProps {
-  currentPage: pages;
-  isLoggedIn: boolean;
-}
+export default function Navbar() {
+  const router = useRouter();
+  console.log(auth.currentUser);
+  const isHome = router.pathname === pages.home;
 
-export default function Navbar({ currentPage, isLoggedIn }: NavProps) {
   const login = () => {
-    Router.push('/login');
+    console.log('LOGIN');
+    router.push('/login');
   };
 
   const loggedInRedirect = () => {
-    if (currentPage === pages.home) {
-      Router.push('/account');
+    if (isHome) {
+      router.push('/account');
     } else {
       auth.signOut();
-      Router.push('/');
+      router.push('/');
     }
   };
 
   let buttonText = '';
 
-  if (isLoggedIn) {
-    buttonText = currentPage === pages.home ? 'My Characters' : 'log out';
+  if (auth.currentUser) {
+    buttonText = isHome ? 'My Characters' : 'log out';
   } else {
     buttonText = 'log in';
   }
@@ -51,7 +52,7 @@ export default function Navbar({ currentPage, isLoggedIn }: NavProps) {
         </div>
 
         <button
-          onClick={isLoggedIn ? login : loggedInRedirect}
+          onClick={auth.currentUser ? loggedInRedirect : login}
           className='ml-auto border border-blue-800 shadow rounded-full px-6 py-2 text-blue-800 hover:bg-blue-800 hover:border-blue-800 hover:text-white transform hover:-translate-y-px active:bg-blue-900 active:border-blue-900 active:translate-y-px'
         >
           {buttonText}
