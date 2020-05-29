@@ -10,6 +10,7 @@ export async function getServerSideProps() {
   if (auth.currentUser) {
     Router.replace('/login');
   }
+  return { props: {} };
 }
 
 export default Account;
