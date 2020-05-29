@@ -4,12 +4,6 @@ import { StarWars } from '../public/svgs';
 import { auth } from '../firebaseApp';
 import LoginModal from './LoginModal';
 
-/* 3 possible states. 
-  1. Not logged in : button should do log in flow
-  2. logged in on home screen -> my characters
-  3. logged in on account screen -> log out?
-*/
-
 enum pages {
   'home' = '/',
   'account' = '/account',
