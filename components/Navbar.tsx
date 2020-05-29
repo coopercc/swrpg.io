@@ -4,8 +4,6 @@ import { StarWars } from '../public/svgs';
 import { auth } from '../firebaseApp';
 import LoginModal from './LoginModal';
 
-// Log in bar may need to be contextual. Maybe pass in log in behavior?
-
 /* 3 possible states. 
   1. Not logged in : button should do log in flow
   2. logged in on home screen -> my characters
@@ -19,12 +17,21 @@ enum pages {
 
 export default function Navbar() {
   const router = useRouter();
-  const [showLogin, setshowLogin] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
+  const [buttonText, setButtonText] = useState('...');
 
   const isHome = router.pathname === pages.home;
 
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+      setButtonText(isHome ? 'My Characters' : 'log out');
+    } else {
+      setButtonText('log in');
+    }
+  });
+
   const login = () => {
-    setshowLogin(true);
+    setShowLogin(true);
   };
 
   const loggedInRedirect = () => {
@@ -35,14 +42,6 @@ export default function Navbar() {
       router.push('/');
     }
   };
-
-  let buttonText = '';
-  if (auth.currentUser !== null) {
-    console.log(isHome);
-    buttonText = isHome ? 'My Characters' : 'log out';
-  } else {
-    buttonText = 'log in';
-  }
 
   return (
     <>
@@ -61,7 +60,7 @@ export default function Navbar() {
           </button>
         </div>
       </nav>
-      {showLogin && <LoginModal hideModal={() => setshowLogin(false)} />}
+      {showLogin && <LoginModal hideModal={() => setShowLogin(false)} />}
     </>
   );
 }
