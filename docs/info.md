@@ -47,35 +47,14 @@ Character = {
       {
         skill: name
         career: boolean,
-        characteristic: enum of characteristic types,
+        characteristic: //enum of characteristic types,
         rank: [0-5],
       }
       ...
     ]
   },
   weapons: [
-    {
-      name: string,
-      skill: string, //MUST MATCH skill.combat object prop name
-      range: string,
-      damage: number,
-      crit: number,
-      hp: number,
-      qualities: [
-        {
-          quality: string,
-          rank?: number
-        }
-      ],
-      mods: [
-        {
-          name: string,
-          hpRequired: number,
-          base: string, //long
-          mods: string //long
-        }
-      ]
-    }
+    weaponID
   ],
   cybernetics: [{
     bodyPart: string,
@@ -119,6 +98,30 @@ Character = {
     }
   },
   weapons: {
-
+    id: {
+      name: string,
+      skill: string, //MUST MATCH skill.combat object prop name
+      range: string,
+      damage: number,
+      crit: number,
+      hp: number,
+      qualities: [
+        {
+          quality: string,
+          rank?: number
+        }
+      ],
+      mods: [
+        MODS.id
+      ]
+    }
+  },
+  mods: {
+    id: {
+       name: string,
+        hpRequired: number,
+        base: string, //long
+        mods: string //long
+    }
   }
 ```
